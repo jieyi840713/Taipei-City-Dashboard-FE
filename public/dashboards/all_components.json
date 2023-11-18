@@ -4077,6 +4077,176 @@
 				"https://github.com/tpe-doit/YouBike-Optimization"
 			],
 			"contributors": ["tuic"]
+		},
+		"1000": {
+			"id": 1000,
+			"index": "air_quality",
+			"map_config": [
+				{
+					"index": "air_quality",
+					"type": "fill",
+					"paint": {
+						"fill-color": [
+							"match",
+							["get", "category"],
+							"極低",
+							"#FFFFCC",
+							"低",
+							"#e7d198",
+							"中低",
+							"#d1a26c",
+							"中",
+							"#b9734a",
+							"高",
+							"#800026",
+							"#800026"
+						],
+						"fill-opacity": 0.8
+					},
+					"property": [
+						{
+							"key": "name",
+							"name": "名稱"
+						},
+						{
+							"key": "summary",
+							"name": "簡介"
+						},
+						{
+							"key": "car",
+							"name": "汽車停車場"
+						},
+						{
+							"key": "motor",
+							"name": "機車停車場"
+						},
+						{
+							"key": "charging",
+							"name": "電動充電樁"
+						},
+						{
+							"key": "occupied_rate",
+							"name": "使用率"
+						},
+						{
+							"key": "data_time",
+							"name": "更新時間"
+						}
+					],
+					"size": null,
+					"icon": null,
+					"title": "公共停車場"
+				}
+			],
+			"chart_config": {
+				"types": ["BubbleChart"],
+				"color": ["#b9734a"],
+				"unit": "個",
+				"categories": [
+					"汽車車位使用量",
+					"機車車位使用量",
+					"充電站使用量"
+				]
+			},
+			"name": "空氣品質監測站",
+			"source": "資訊局",
+			"time_from": "2023-07-28T00:00:00+08:00",
+			"time_to": null,
+			"short_desc": "",
+			"long_desc": "展示YouBike未設站區域的潛在需求，詳細預測方法可參考開源成果Github。資料來源為臺北大數據中心研究，更新頻率不定期。",
+			"use_case": "本組件可讓您掌握目前未設站地區，以及該地區可能有多少需求。這有助於規劃YouBike的擴展，並規劃適當的資源以滿足日益增長的需求。",
+			"tags": [],
+			"links": [
+				"https://tuic.gov.taipei/youbike",
+				"https://github.com/tpe-doit/YouBike-Optimization"
+			],
+			"contributors": ["tuic"]
+		},
+		"997": {
+			"id": 997,
+			"index": "ecar_recharge",
+			"map_config": [
+				{
+					"index": "ecar_recharge",
+					"property": [
+						{
+							"key": "名稱",
+							"name": "充電站名稱"
+						},
+						{
+							"key": "廠商",
+							"name": "廠商"
+						},
+						{
+							"key": "充電柱數量",
+							"name": "充電柱數量"
+						}
+					],
+					"type": "symbol",
+					"icon": "triangle_white",
+					"title": "電動車充電站"
+				}
+			],
+			"name": "臺北市營利電動車充電站",
+			"chart_config": {
+				"types": ["MapLegend"]
+			},
+			"chart_data": [
+				{
+					"type": "symbol",
+					"icon": "triangle_white",
+					"name": "電動車充電站"
+				}
+			],
+			"source": "臺北市",
+			"contributors": ["tuic"]
+		},
+		"1002": {
+			"id": 1002,
+			"index": "recycle_spot",
+			"map_config": [
+				{
+					"index": "recycle_spot",
+					"property": [
+						{
+							"key": "行政區",
+							"name": "行政區"
+						},
+						{
+							"key": "分隊",
+							"name": "分隊"
+						},
+						{
+							"key": "地址",
+							"name": "地址"
+						},
+						{
+							"key": "電話",
+							"name": "電話"
+						},
+						{
+							"key": "備註",
+							"name": "備註"
+						}
+					],
+					"type": "symbol",
+					"icon": "bus",
+					"title": "臺北市垃圾資源回收、廚餘回收限時收受點"
+				}
+			],
+			"name": "臺北市垃圾資源回收收受點",
+			"chart_config": {
+				"types": ["MapLegend"]
+			},
+			"chart_data": [
+				{
+					"type": "symbol",
+					"icon": "bus",
+					"name": "垃圾資源回收"
+				}
+			],
+			"source": "臺北市",
+			"contributors": ["tuic"]
 		}
 	}
 }
