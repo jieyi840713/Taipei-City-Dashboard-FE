@@ -4077,6 +4077,31 @@
 				"https://github.com/tpe-doit/YouBike-Optimization"
 			],
 			"contributors": ["tuic"]
+		},
+		"1001": {
+			"id": 1001,
+			"index": "test",
+			"history_data": false,
+			"map_config": null,
+			"chart_config": {
+				"color": ["#FD5696"],
+				"types": ["TimelineMultiSeriesChart"],
+				"unit": "AQI"
+			},
+			"name": "空氣汙染時序圖",
+			"source": "環境部",
+			"time_from": "2023-11-04T23:59:59+08:00",
+			"time_to": "2023-11-17T23:59:59+08:00",
+			"update_freq": 1,
+			"update_freq_unit": "month",
+			"short_desc": "顯示近兩年每月的刑案統計資訊",
+			"long_desc": "顯示近兩年每月的刑案統計資訊，資料來源為台北市主計處開放資料，每月更新。",
+			"use_case": "藉由掌握台北市刑事案件近2年的統計資訊，我們可以瞭解案件的增減趨勢及相關特徵，有助於制定更有效的治安策略。",
+			"links": [
+				"https://data.taipei/dataset/detail?id=dc7e246a-a88e-42f8-8cd6-9739209af774"
+			],
+			"tags": [],
+			"contributors": ["tuic"]
 		}
 	}
 }

@@ -76,7 +76,7 @@
 		{
 			"name": "韌性城市",
 			"index": "green-city",
-			"components": ["117", "118", "61", "74"],
+			"components": ["1001"],
 			"icon": "public"
 		}
 	]
