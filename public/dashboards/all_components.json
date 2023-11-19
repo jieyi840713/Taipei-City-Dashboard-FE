@@ -4201,8 +4201,136 @@
 			"source": "臺北市",
 			"contributors": ["tuic"]
 		},
+		"1001": {
+			"id": 1001,
+			"index": "aqi_indicator",
+			"history_data": false,
+			"map_config": null,
+			"chart_config": {
+				"color": ["#FD5696"],
+				"types": ["TimelineMultiSeriesChart"],
+				"unit": "公升"
+			},
+			"name": "空氣汙染時序圖",
+			"source": "環境部",
+			"time_from": "2023-11-04T23:59:59+08:00",
+			"time_to": "2023-11-17T23:59:59+08:00",
+			"update_freq": 1,
+			"update_freq_unit": "month",
+			"short_desc": "顯示近一週的空氣污染統計資訊",
+			"long_desc": "顯示近一週的刑案統計資訊，資料來源為環境部開放資料，每日更新。",
+			"use_case": "藉由掌握台北市刑每日空污AQI數據，了解市民是否長期暴露在不安全的空氣環境中",
+			"links": [
+				"https://data.taipei/dataset/detail?id=dc7e246a-a88e-42f8-8cd6-9739209af774"
+			],
+			"tags": [],
+			"contributors": ["tuic"]
+		},
 		"1002": {
 			"id": 1002,
+			"index": "use_water",
+			"history_data": false,
+			"map_config": null,
+			"chart_config": {
+				"color": ["#5a9cf8"],
+				"types": ["FunnelChart"],
+				"unit": "AQI"
+			},
+			"name": "每人每日家庭用水",
+			"source": "自來水事業處",
+			"time_from": "2022-01-01T23:59:59+08:00",
+			"time_to": "2022-12-31T23:59:59+08:00",
+			"update_freq": 1,
+			"update_freq_unit": "year",
+			"short_desc": "顯示近一年的每人每日的用水量",
+			"long_desc": "顯示近一年的每人每日家庭(生活)用水量",
+			"use_case": "藉由掌握台北市每人每日用水量，了解是否宣導節約用水有達到功效",
+			"links": [
+				"https://data.taipei/api/v1/dataset/b750f54f-2805-468a-bd90-e09804445f6b?scope=resourceAquire"
+			],
+			"tags": [],
+			"contributors": ["tuic"]
+		},
+		"1003": {
+			"id": 1003,
+			"index": "green_resources",
+			"map_config": null,
+			"history_data": true,
+			"chart_config": {
+				"types": ["TimelineSeparateChart", "TimelineStackedChart"],
+				"color": [
+					"#4dd97a",
+					"#0a85f4",
+					"#0a85f4",
+					"#f4f40a",
+					"#f4730a",
+					"#f40a92",
+					"#f40a48",
+					"#ba0af4",
+					"#0aa6f4",
+					"#0af4ba",
+					"#c5f40a",
+					"#f4640a"
+				],
+				"unit": "公頃"
+			},
+			"name": "人均綠地",
+			"source": "綠資源",
+			"time_from": "2001-01-01T00:00:00+08:00",
+			"time_to": "2022-12-31T00:00:00+08:00",
+			"update_freq": 1,
+			"update_freq_unit": "year",
+			"short_desc": "顯示台北市民歷年每人可使用的綠地面積",
+			"long_desc": "顯示台北市民歷年每人可使用的綠地面積",
+			"use_case": "藉由這些圖表數據，我們可以追蹤使照與建照的變化趨勢，並進一步分析相關因素對於發照量的影響，以助於對都市發展和建設進行更明確的規劃與評估",
+			"links": [
+				"https://data.taipei/dataset/detail?id=0816f991-e6c8-4da0-a789-d022fee1462b",
+				"https://data.taipei/dataset/detail?id=d8834353-ff8e-4a6c-9730-a4d3541f2669"
+			],
+			"tags": [],
+			"contributors": ["tuic"]
+		},
+		"1004": {
+			"id": 1004,
+			"index": "green_resources",
+			"map_config": null,
+			"history_data": true,
+			"chart_config": {
+				"types": ["TimelineSeparateChart", "TimelineStackedChart"],
+				"color": [
+					"#4dd97a",
+					"#0a85f4",
+					"#0a85f4",
+					"#f4f40a",
+					"#f4730a",
+					"#f40a92",
+					"#f40a48",
+					"#ba0af4",
+					"#0aa6f4",
+					"#0af4ba",
+					"#c5f40a",
+					"#f4640a"
+				],
+				"unit": "公頃"
+			},
+			"name": "綠地總公頃",
+			"source": "綠資源",
+			"time_from": "2001-01-01T00:00:00+08:00",
+			"time_to": "2022-12-31T00:00:00+08:00",
+			"update_freq": 1,
+			"update_freq_unit": "year",
+			"short_desc": "顯示台北市民歷年每人可使用的綠地面積",
+			"long_desc": "顯示台北市民歷年每人可使用的綠地面積",
+			"use_case": "藉由這些圖表數據，我們可以追蹤使照與建照的變化趨勢，並進一步分析相關因素對於發照量的影響，以助於對都市發展和建設進行更明確的規劃與評估",
+			"links": [
+				"https://data.taipei/dataset/detail?id=0816f991-e6c8-4da0-a789-d022fee1462b",
+				"https://data.taipei/dataset/detail?id=d8834353-ff8e-4a6c-9730-a4d3541f2669"
+			],
+			"tags": [],
+			"contributors": ["tuic"]
+		},
+		"1005": {
+			"id": 1005,
 			"index": "recycle_spot",
 			"map_config": [
 				{
@@ -4245,8 +4373,7 @@
 					"name": "垃圾資源回收"
 				}
 			],
-			"source": "臺北市",
-			"contributors": ["tuic"]
+			"source": "臺北市"
 		}
 	}
 }

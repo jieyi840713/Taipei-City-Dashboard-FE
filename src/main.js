@@ -31,10 +31,12 @@ import GuageChart from "./components/charts/GuageChart.vue";
 import RadarChart from "./components/charts/RadarChart.vue";
 import TimelineSeparateChart from "./components/charts/TimelineSeparateChart.vue";
 import TimelineStackedChart from "./components/charts/TimelineStackedChart.vue";
+import TimelineMultiSeriesChart from "./components/charts/TimelineMultiSeriesChart.vue";
 import MapLegend from "./components/charts/MapLegend.vue";
 import MetroChart from "./components/charts/MetroChart.vue";
 import HeatmapChart from "./components/charts/HeatmapChart.vue";
 import BubbleChart from "./components/charts/BubbleChart.vue";
+import FunnelChart from "./components/charts/FunnelChart.vue";
 
 const app = createApp(App);
 
@@ -54,9 +56,11 @@ app.component("GuageChart", GuageChart);
 app.component("RadarChart", RadarChart);
 app.component("TimelineSeparateChart", TimelineSeparateChart);
 app.component("TimelineStackedChart", TimelineStackedChart);
+app.component("TimelineMultiSeriesChart", TimelineMultiSeriesChart);
 app.component("MapLegend", MapLegend);
 app.component("MetroChart", MetroChart);
 app.component("HeatmapChart", HeatmapChart);
 app.component("BubbleChart", BubbleChart);
+app.component("FunnelChart", FunnelChart);
 
 app.mount("#app");
