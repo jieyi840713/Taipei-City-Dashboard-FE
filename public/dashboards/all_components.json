@@ -4117,59 +4117,66 @@
 			"index": "air_quality",
 			"map_config": [
 				{
-					"index": "air_quality",
-					"type": "fill",
+					"index": "patrol_designate_place",
 					"paint": {
-						"fill-color": [
-							"match",
-							["get", "category"],
-							"極低",
-							"#FFFFCC",
-							"低",
-							"#e7d198",
-							"中低",
-							"#d1a26c",
-							"中",
-							"#b9734a",
-							"高",
-							"#800026",
-							"#800026"
+						"circle-opacity": 0,
+						"circle-radius": [
+							"interpolate",
+							["linear"],
+							["to-number", ["get", "PM2.5_AVG"]],
+							0,
+							2.5,
+							10,
+							10,
+							20,
+							20,
+							100,
+							1000
 						],
-						"fill-opacity": 0.8
+						"circle-stroke-color": [
+							"interpolate",
+							["linear"],
+							["to-number", ["get", "PM2.5_AVG"]],
+							0,
+							"green",
+							18,
+							"yellow",
+							23,
+							"red",
+							100,
+							"purple"
+						],
+						"circle-stroke-width": 3
 					},
 					"property": [
 						{
-							"key": "name",
+							"key": "PM2.5_AVG",
+							"name": "PM2.5"
+						},
+						{
+							"key": "AQI",
+							"name": "AQI"
+						}
+					],
+					"type": "circle",
+					"title": "空氣品質指標(AQI)"
+				},
+
+				{
+					"index": "patrol_designate_place",
+					"property": [
+						{
+							"key": "測站名稱",
 							"name": "名稱"
 						},
 						{
-							"key": "summary",
-							"name": "簡介"
-						},
-						{
-							"key": "car",
-							"name": "汽車停車場"
-						},
-						{
-							"key": "motor",
-							"name": "機車停車場"
-						},
-						{
-							"key": "charging",
-							"name": "電動充電樁"
-						},
-						{
-							"key": "occupied_rate",
-							"name": "使用率"
-						},
-						{
-							"key": "data_time",
-							"name": "更新時間"
+							"key": "測站地址",
+							"name": "地址"
 						}
 					],
-					"size": null,
-					"icon": null,
-					"title": "公共停車場"
+					"type": "symbol",
+					"icon": "triangle_white",
+					"title": "測站"
 				}
 			],
 			"chart_config": {
