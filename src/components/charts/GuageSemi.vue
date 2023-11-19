@@ -32,7 +32,7 @@ const parseSeries = computed(() => {
 const chartOptions = ref({
 	chart: {
 		type: "radialBar",
-		offsetY: -20,
+		offsetY: 0,
 		sparkline: {
 			enabled: true,
 		},
