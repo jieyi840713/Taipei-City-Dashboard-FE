@@ -75,7 +75,7 @@ export const TaipeiVillage = {
 export const TaipeiBuilding = {
 	id: "taipei_building_3d",
 	source: "taipei_building_3d_source",
-	"source-layer": "tp_building_height84-18p8j0",
+	"source-layer": "polygontp_building_height84-742qmu",
 	type: "fill-extrusion",
 	minzoom: 14,
 	paint: {
@@ -356,6 +356,27 @@ export const maplayerCommonLayout = {
 			40,
 			22,
 			60,
+		],
+	},
+	"symbol-sun": {
+		"icon-image": [
+			"case",
+			[">=", ["get", "裝置容量(KW)"], 400],
+			"sun_red",
+			[">=", ["get", "裝置容量(KW)"], 200],
+			"sun_yellow",
+			"sun_green",
+		],
+		"icon-size": [
+			"interpolate",
+			["linear"],
+			["zoom"],
+			11.99,
+			0.7,
+			14,
+			1.1,
+			22,
+			1.4,
 		],
 	},
 };

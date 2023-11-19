@@ -20,8 +20,13 @@ import MapContainer from "../components/map/MapContainer.vue";
 import MoreInfo from "../components/dialogs/MoreInfo.vue";
 import ReportIssue from "../components/dialogs/ReportIssue.vue";
 
+
+
 const contentStore = useContentStore();
 const dialogStore = useDialogStore();
+
+
+
 
 // Separate components with maps from those without
 const parseMapLayers = computed(() => {
@@ -37,6 +42,7 @@ const parseMapLayers = computed(() => {
 </script>
 
 <template>
+
 	<div class="map">
 		<div class="hide-if-mobile">
 			<!-- If the dashboard is map layers -->
@@ -56,7 +62,7 @@ const parseMapLayers = computed(() => {
 				v-else-if="contentStore.currentDashboard.content.length !== 0"
 				class="map-charts"
 			>
-				<ComponentMapChart
+				<ComponentMapChart @update-value="handleUpdate"
 					v-for="item in parseMapLayers.hasMap"
 					:content="item"
 					:key="`map-layer-${item.index}-${contentStore.currentDashboard.index}`"
@@ -176,4 +182,7 @@ const parseMapLayers = computed(() => {
 		transform: rotate(360deg);
 	}
 }
+
+body { margin: 0; padding: 0; }
+
 </style>

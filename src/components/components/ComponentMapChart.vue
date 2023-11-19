@@ -4,7 +4,7 @@
 <!-- The different modes are controlled by the prop "isMapLayer" (default false) -->
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch, defineEmits, onMounted  } from "vue";
 import { useMapStore } from "../../store/mapStore";
 import { useDialogStore } from "../../store/dialogStore";
 
@@ -13,11 +13,16 @@ import { chartTypes } from "../../assets/configs/apexcharts/chartTypes";
 const mapStore = useMapStore();
 const dialogStore = useDialogStore();
 
+
+	
+
 const props = defineProps({
 	// The complete config (incl. chart data) of a dashboard component will be passed in
 	content: { type: Object },
 	isMapLayer: { type: Boolean, default: false },
 });
+const selectedOption = ref('歷年比對') 
+const emit = defineEmits(['update-value']);
 
 // The default active chart is the first one in the list defined in the dashboard component
 const activeChart = ref(props.content.chart_config.types[0]);
@@ -77,6 +82,31 @@ function changeActiveChart(chartName) {
 		`${props.content.map_config[0].index}-${props.content.map_config[0].type}`
 	);
 }
+
+const emitEvent = (newValue) => {
+    emit('update-value', newValue);
+};
+
+// watch(selectedOption, (newValue) => {
+	
+// 	emit('update-value', newValue);
+// 	sessionStorage.setItem('select',newValue)
+// 	console.log(sessionStorage.getItem('select'));
+
+// });
+
+onMounted(() => {
+	sessionStorage.removeItem('select')
+});
+
+const selectChange = (event) => {
+ 
+  const selectedValue = event.target.value;
+  console.log(`选中的值是: ${selectedValue}`);
+  sessionStorage.setItem('select',selectedValue)
+  console.log(sessionStorage.getItem('select'));
+};
+
 </script>
 
 <template>
@@ -155,6 +185,16 @@ function changeActiveChart(chartName) {
 			>
 				{{ chartTypes[item] }}
 			</button>
+			<select v-model="selectedOption" v-if="props.content.id == 998 || props.content.id == 103"
+			:class="{
+					'componentmapchart-control-button': true,
+					'componentmapchart-control-active': activeChart === item
+				}"
+				@change="selectChange">
+				<option disabled value="歷年比對">歷年比對</option>
+				<option value="2021">2021</option>
+				
+			</select>
 		</div>
 		<div
 			class="componentmapchart-chart"

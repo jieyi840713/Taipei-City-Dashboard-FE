@@ -1,50 +1,127 @@
 <!-- Developed by Taipei Urban Intelligence Center 2023 -->
 
 <script setup>
-import { onMounted, ref } from 'vue';
-import { useMapStore } from '../../store/mapStore';
-import { useDialogStore } from '../../store/dialogStore';
-import { useContentStore } from '../../store/contentStore';
+import { onMounted, ref, nextTick, watch } from "vue";
+import { useMapStore } from "../../store/mapStore";
+import { useDialogStore } from "../../store/dialogStore";
+import { useContentStore } from "../../store/contentStore";
 
-import MobileLayers from '../dialogs/MobileLayers.vue';
+import MobileLayers from "../dialogs/MobileLayers.vue";
+
+import mapboxgl from "mapbox-gl";
+import MapboxCompare from "mapbox-gl-compare";
+import EventEmitter from "events";
+window.EventEmitter = EventEmitter;
 
 const mapStore = useMapStore();
 const dialogStore = useDialogStore();
 const contentStore = useContentStore();
 
-const newSavedLocation = ref('');
+const select = ref(sessionStorage.getItem("select") || "");
+
+const newSavedLocation = ref("");
 
 function handleSubmitNewLocation() {
 	mapStore.addNewSavedLocation(newSavedLocation.value);
-	newSavedLocation.value = '';
+	newSavedLocation.value = "";
 }
 
 onMounted(() => {
-	mapStore.initializeMapBox();
+	mapboxgl.accessToken = import.meta.env.VITE_MAPBOXTOKEN;
+
+	nextTick(() => {
+		if (
+			select.value === "2021" &&
+			document.getElementById("before") &&
+			document.getElementById("after")
+		) {
+			// 只有当 select 的值为 '2021' 且相关的 DOM 元素存在时，才初始化地图
+			const beforeMap = new mapboxgl.Map({
+				container: "before",
+				style: "mapbox://styles/poikladevv88/clp4lbqem00fw01pwb9vmayui",
+				center: [121.536609, 25.044808],
+				zoom: 12,
+			});
+
+			const afterMap = new mapboxgl.Map({
+				container: "after",
+				style: "mapbox://styles/poikladevv88/clp4jlzz300ey01r6badi3qs0",
+				center: [121.536609, 25.044808],
+				zoom: 12,
+			});
+
+			new MapboxCompare(beforeMap, afterMap, "#comparison-container");
+		} else {
+			mapStore.initializeMapBox();
+		}
+	});
 });
 </script>
 
 <template>
-	<div class="mapcontainer">
+	<!-- style="z-index: 1000;"  v-if=" select == '2021'" -->
+	<div
+		id="comparison-container"
+		style="z-index: 1000"
+		v-if="select == '2021'"
+	>
+		<div id="before" class="compareMap"></div>
+		<div id="after" class="compareMap"></div>
+	</div>
+
+	<div class="mapcontainer" v-else>
 		<div id="mapboxBox">
-			<div class="mapcontainer-loading" v-if="mapStore.loadingLayers.length > 0">
+			<div
+				class="mapcontainer-loading"
+				v-if="mapStore.loadingLayers.length > 0"
+			>
 				<div></div>
 			</div>
-			<button class="mapcontainer-layers show-if-mobile"
-				@click="dialogStore.showDialog('mobileLayers')"><span>layers</span></button>
+			<button
+				class="mapcontainer-layers show-if-mobile"
+				@click="dialogStore.showDialog('mobileLayers')"
+			>
+				<span>layers</span>
+			</button>
 			<!-- The key prop informs vue that the component should be updated when switching dashboards -->
 			<MobileLayers :key="contentStore.currentDashboard.index" />
 		</div>
 		<div class="mapcontainer-controls hide-if-mobile">
-			<button @click="mapStore.easeToLocation([[121.536609, 25.044808], 12.5, 0, 0])">返回預設</button>
-			<div v-for="(item, index) in mapStore.savedLocations" :key="`${item[4]}-${index}`">
-				<button @click="mapStore.easeToLocation(item)">{{ item[4] }}
+			<button
+				@click="
+					mapStore.easeToLocation([
+						[121.536609, 25.044808],
+						12.5,
+						0,
+						0,
+					])
+				"
+			>
+				返回預設
+			</button>
+			<div
+				v-for="(item, index) in mapStore.savedLocations"
+				:key="`${item[4]}-${index}`"
+			>
+				<button @click="mapStore.easeToLocation(item)">
+					{{ item[4] }}
 				</button>
-				<div class="mapcontainer-controls-delete" @click="mapStore.removeSavedLocation(index)"><span>delete</span>
+				<div
+					class="mapcontainer-controls-delete"
+					@click="mapStore.removeSavedLocation(index)"
+				>
+					<span>delete</span>
 				</div>
 			</div>
-			<input v-if="mapStore.savedLocations.length < 10" type="text" placeholder="新增後按Enter" v-model="newSavedLocation"
-				maxlength="6" @focusout="newSavedLocation = ''" @keypress.enter="handleSubmitNewLocation" />
+			<input
+				v-if="mapStore.savedLocations.length < 10"
+				type="text"
+				placeholder="新增後按Enter"
+				v-model="newSavedLocation"
+				maxlength="6"
+				@focusout="newSavedLocation = ''"
+				@keypress.enter="handleSubmitNewLocation"
+			/>
 		</div>
 	</div>
 </template>
@@ -66,7 +143,7 @@ onMounted(() => {
 		z-index: 20;
 
 		@media (max-width: 1000px) {
-			top: 145px
+			top: 145px;
 		}
 
 		div {
@@ -189,15 +266,15 @@ onMounted(() => {
 
 @keyframes colorfade {
 	0% {
-		color: var(--color-highlight)
+		color: var(--color-highlight);
 	}
 
 	75% {
-		color: var(--color-highlight)
+		color: var(--color-highlight);
 	}
 
 	100% {
-		color: var(--color-complement-text)
+		color: var(--color-complement-text);
 	}
 }
 
@@ -205,5 +282,14 @@ onMounted(() => {
 	to {
 		transform: rotate(360deg);
 	}
+}
+
+.compareMap {
+	position: absolute;
+	top: 20;
+	left: 25;
+	bottom: 0;
+	width: 62%;
+	height: 84%;
 }
 </style>

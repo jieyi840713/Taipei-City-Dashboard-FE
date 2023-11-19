@@ -35,7 +35,24 @@ function handleDataSelection(index) {
 
 <template>
 	<div class="maplegend">
-		<div class="maplegend-legend">
+		<div
+			class="reportissue"
+			:style="{ width: '100%' }"
+			v-if="props.map_config[0].index === 'patrol_designate_place_path'"
+		>
+			<h3 :style="{ textWrap: 'nowrap' }">
+				From (121.53617333558235, 25.115993829884932)
+			</h3>
+			<input class="reportissue-input" type="text" value="台北市立大學" />
+			<h3 :style="{ textWrap: 'nowrap' }">
+				To (121.5637902103862, 25.037654911446854)
+			</h3>
+			<input class="reportissue-input" type="text" value="台北市政府" />
+		</div>
+		<div
+			class="maplegend-legend"
+			v-if="props.map_config[0].index !== 'patrol_designate_place_path'"
+		>
 			<button
 				v-for="(item, index) in series"
 				:key="item.name"
@@ -131,6 +148,52 @@ function handleDataSelection(index) {
 
 	&-selected {
 		box-shadow: 0px 0px 5px black;
+	}
+}
+
+.reportissue {
+	width: 300px;
+	display: flex;
+	flex-direction: column;
+	overflow: visible;
+
+	h3 {
+		margin: 0.5rem 0;
+		font-size: var(--font-s);
+		font-weight: 400;
+	}
+
+	label {
+		position: relative;
+		display: flex;
+		align-items: center;
+		font-size: var(--font-s);
+		color: var(--color-complement-text);
+		transition: color 0.2s;
+		cursor: pointer;
+
+		div {
+			width: calc(var(--font-s) / 2);
+			height: calc(var(--font-s) / 2);
+			margin-right: 4px;
+			padding: calc(var(--font-s) / 4);
+			border-radius: 50%;
+			border: 1px solid var(--color-border);
+			transition: background-color 0.2s, border-color 0.2s;
+		}
+	}
+
+	&-input {
+		padding: 4px 6px;
+		border: solid 1px var(--color-border);
+		border-radius: 5px;
+		background-color: transparent;
+		font-size: var(--font-m);
+
+		&:focus {
+			outline: none;
+			border: solid 1px var(--color-highlight);
+		}
 	}
 }
 </style>
