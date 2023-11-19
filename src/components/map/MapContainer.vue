@@ -30,30 +30,30 @@ onMounted(() => {
 	mapboxgl.accessToken = import.meta.env.VITE_MAPBOXTOKEN;
 
 	nextTick(() => {
-		// if (
-		// 	select.value === "2021" &&
-		// 	document.getElementById("before") &&
-		// 	document.getElementById("after")
-		// ) {
-		// 只有当 select 的值为 '2021' 且相关的 DOM 元素存在时，才初始化地图
-		const beforeMap = new mapboxgl.Map({
-			container: "before",
-			style: "mapbox://styles/poikladevv88/clp4lbqem00fw01pwb9vmayui",
-			center: [121.536609, 25.044808],
-			zoom: 12,
-		});
+		if (
+			select.value === "2021" &&
+			document.getElementById("before") &&
+			document.getElementById("after")
+		) {
+			// 只有当 select 的值为 '2021' 且相关的 DOM 元素存在时，才初始化地图
+			const beforeMap = new mapboxgl.Map({
+				container: "before",
+				style: "mapbox://styles/poikladevv88/clp4lbqem00fw01pwb9vmayui",
+				center: [121.536609, 25.044808],
+				zoom: 12,
+			});
 
-		const afterMap = new mapboxgl.Map({
-			container: "after",
-			style: "mapbox://styles/poikladevv88/clp4jlzz300ey01r6badi3qs0",
-			center: [121.536609, 25.044808],
-			zoom: 12,
-		});
+			const afterMap = new mapboxgl.Map({
+				container: "after",
+				style: "mapbox://styles/poikladevv88/clp4jlzz300ey01r6badi3qs0",
+				center: [121.536609, 25.044808],
+				zoom: 12,
+			});
 
-		new MapboxCompare(beforeMap, afterMap, "#comparison-container");
-		// } else {
-		mapStore.initializeMapBox();
-		// }
+			new MapboxCompare(beforeMap, afterMap, "#comparison-container");
+		} else {
+			mapStore.initializeMapBox();
+		}
 	});
 });
 </script>
