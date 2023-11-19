@@ -4415,6 +4415,77 @@
 				}
 			],
 			"source": "臺北市"
+		},
+		"1010": {
+			"id": 1010,
+			"index": "solar_power",
+			"map_config": [
+				{
+					"index": "solarpower",
+					"paint": {},
+					"property": [
+						{
+							"key": "行政區",
+							"name": "行政區"
+						},
+						{
+							"key": "類別",
+							"name": "類別"
+						},
+						{
+							"key": "名稱",
+							"name": "名稱"
+						},
+						{
+							"key": "地址",
+							"name": "地址"
+						},
+						{
+							"key": "裝置容量(KW)",
+							"name": "裝置容量(KW)"
+						}
+					],
+					"type": "symbol",
+					"icon": "sun",
+					"title": "發電能力"
+				}
+			],
+			"chart_config": {
+				"color": ["#33C552"],
+				"types": ["DistrictChart", "ColumnChart"],
+				"unit": "KW",
+				"map_filter": [
+					"行政區",
+					[
+						"北投區",
+						"士林區",
+						"內湖區",
+						"南港區",
+						"松山區",
+						"信義區",
+						"中山區",
+						"大同區",
+						"中正區",
+						"萬華區",
+						"大安區",
+						"文山區"
+					]
+				]
+			},
+			"name": "太陽光電",
+			"source": "",
+			"time_from": null,
+			"time_to": null,
+			"update_freq": null,
+			"update_freq_unit": null,
+			"short_desc": "test",
+			"long_desc": "test2",
+			"use_case": "test3",
+			"links": [
+				"https://data.taipei/dataset/detail?id=26e04fb7-ea13-44d1-8a2e-8598cca6fd9c"
+			],
+			"tags": [],
+			"contributors": []
 		}
 	}
 }
