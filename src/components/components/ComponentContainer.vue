@@ -55,6 +55,7 @@ const updateFreq = computed(() => {
 	}更新`;
 });
 
+
 // Toggles between chart types defined in the dashboard component
 function changeActiveChart(chartName) {
 	activeChart.value = chartName;
@@ -145,6 +146,7 @@ function toggleFavorite() {
 			>
 				{{ chartTypes[item] }}
 			</button>
+
 		</div>
 		<div
 			:class="{

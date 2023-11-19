@@ -1,16 +1,24 @@
 <!-- Developed by Taipei Urban Intelligence Center 2023 -->
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref,nextTick, watch } from 'vue';
 import { useMapStore } from '../../store/mapStore';
 import { useDialogStore } from '../../store/dialogStore';
 import { useContentStore } from '../../store/contentStore';
 
 import MobileLayers from '../dialogs/MobileLayers.vue';
 
+import mapboxgl from 'mapbox-gl';
+import MapboxCompare from 'mapbox-gl-compare';
+import EventEmitter from 'events';
+window.EventEmitter = EventEmitter;
+
 const mapStore = useMapStore();
 const dialogStore = useDialogStore();
 const contentStore = useContentStore();
+
+const select =ref(sessionStorage.getItem('select') || '')
+
 
 const newSavedLocation = ref('');
 
@@ -19,14 +27,47 @@ function handleSubmitNewLocation() {
 	newSavedLocation.value = '';
 }
 
+
+
+
 onMounted(() => {
-	mapStore.initializeMapBox();
+  mapboxgl.accessToken = import.meta.env.VITE_MAPBOXTOKEN;
+
+  nextTick(() => {
+    if (select.value === '2021' && document.getElementById('before') && document.getElementById('after')) {
+      // 只有当 select 的值为 '2021' 且相关的 DOM 元素存在时，才初始化地图
+      const beforeMap = new mapboxgl.Map({
+        container: 'before',
+        style: 'mapbox://styles/poikladevv88/clp4lbqem00fw01pwb9vmayui',
+        center: [121.536609, 25.044808],
+        zoom: 12
+      });
+
+      const afterMap = new mapboxgl.Map({
+        container: 'after',
+        style: 'mapbox://styles/poikladevv88/clp4jlzz300ey01r6badi3qs0',
+        center: [121.536609, 25.044808],
+        zoom: 12
+      });
+
+      new MapboxCompare(beforeMap, afterMap, '#comparison-container');
+    } else {
+      mapStore.initializeMapBox();
+    }
+  });
 });
 </script>
 
 <template>
-	<div class="mapcontainer">
-		<div id="mapboxBox">
+	<!-- style="z-index: 1000;"  v-if=" select == '2021'" --> 
+	<div id="comparison-container"  style="z-index: 1000;"  v-if=" select == '2021'">  
+			<div id="before" class="compareMap"></div>
+			<div id="after" class="compareMap"></div>
+	</div>
+
+	<div class="mapcontainer"  v-else>
+		
+		<div id="mapboxBox" >
 			<div class="mapcontainer-loading" v-if="mapStore.loadingLayers.length > 0">
 				<div></div>
 			</div>
@@ -205,5 +246,14 @@ onMounted(() => {
 	to {
 		transform: rotate(360deg);
 	}
+}
+
+.compareMap {
+  position: absolute;
+  top: 20;
+  left: 25;
+  bottom: 0;
+  width: 62%;
+  height: 84%;
 }
 </style>

@@ -70,6 +70,7 @@ const chartOptions = ref({
 	},
 });
 
+
 const chartHeight = computed(() => {
 	return `${40 + props.series[0].data.length * 24}`;
 });
@@ -93,6 +94,7 @@ function handleDataSelection(e, chartContext, config) {
 <template>
 	<div v-if="activeChart === 'BarChart'">
 		<apexchart width="100%" :height="chartHeight" type="bar" :options="chartOptions" :series="series"
-			@dataPointSelection="handleDataSelection"></apexchart>
+			@dataPointSelection="handleDataSelection"></apexchart>	
 	</div>
+
 </template>

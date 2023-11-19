@@ -78,6 +78,7 @@
 			"name": "韌性城市",
 			"index": "green-city",
 			"components": [
+				"103",
 				"997",
 				"1000",
 				"109",

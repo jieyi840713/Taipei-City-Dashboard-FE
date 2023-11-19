@@ -4112,6 +4112,65 @@
 			],
 			"contributors": ["tuic"]
 		},
+		"998": {
+			"id": 998,
+			"index": "parks",
+			"map_config": [
+				{
+					"index": "998",
+					"paint": {
+						"fill-color": [
+							"match",
+							["get", "type"],
+							"河濱公園",
+							"#90EE90",
+							"公園",
+							"#D2EE90",
+							"公園生態化",
+							"#4caf50",
+							"校園綠化",
+							"#CAF245",
+							"green"
+						]
+					},
+					"property": [
+						{
+							"key": "name",
+							"name": "名稱"
+						},
+						{
+							"key": "type",
+							"name": "類型"
+						}
+					],
+					"type": "fill",
+					"title": "公園綠地"
+				}
+			],
+			"chart_config": {
+				"color": ["#D2EE90", "#90EE90", "#4caf50", "#CAF245"],
+				"types": ["TreemapChart", "BarChart"],
+				"unit": "km²",
+				"map_filter": [
+					"type",
+					["公園", "河濱公園", "公園生態化", "校園綠化"]
+				]
+			},
+			"name": "公園綠地",
+			"source": "工務局",
+			"time_from": null,
+			"time_to": null,
+			"update_freq": null,
+			"update_freq_unit": null,
+			"short_desc": "顯示全市各公園類別的面積和分布位置",
+			"long_desc": "顯示全市各公園類別的面積和分布位置，資料來源為台北市工務局開放資料，不定期更新。",
+			"use_case": "圖表所顯示的公園類別的面積與分佈位置，能夠幫助我們更深入了解不同公園類型的分佈情況。",
+			"links": [
+				"https://data.taipei/dataset/detail?id=4717811f-c20f-4deb-8013-981f1844d6fe"
+			],
+			"tags": [],
+			"contributors": ["tuic"]
+		},
 		"1000": {
 			"id": 1000,
 			"index": "air_quality",

@@ -19,6 +19,8 @@ import SettingsBar from './components/SettingsBar.vue';
 import NotificationBar from './components/dialogs/NotificationBar.vue';
 import InitialWarning from './components/dialogs/InitialWarning.vue';
 
+
+
 const authStore = useAuthStore();
 const dialogStore = useDialogStore();
 
@@ -39,6 +41,7 @@ onMounted(() => {
 	if (!showInitialWarning) {
 		dialogStore.showDialog('initialWarning');
 	}
+	sessionStorage.removeItem('select')
 });
 </script>
 
