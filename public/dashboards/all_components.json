@@ -4230,15 +4230,11 @@
 			],
 			"name": "臺北市營利電動車充電站",
 			"chart_config": {
-				"types": ["MapLegend"]
+				"color": ["#d59f0b", "#ff8c1a"],
+				"types": ["GuageSemi"],
+				"unit": "個",
+				"categories": ["運行中公車", "運行中路線"]
 			},
-			"chart_data": [
-				{
-					"type": "symbol",
-					"icon": "triangle_white",
-					"name": "電動車充電站"
-				}
-			],
 			"source": "臺北市",
 			"contributors": ["tuic"]
 		},

@@ -19,7 +19,7 @@ const parseSeries = computed(() => {
 	let parsedSeries = [];
 	let parsedTooltip = [];
 	for (let i = 0; i < props.series[0].data.length; i++) {
-		let total = props.series[0].data[i] + props.series[1].data[i];
+		let total = 100;
 		parsedSeries.push(Math.round((props.series[0].data[i] / total) * 100));
 		parsedTooltip.push(`${props.series[0].data[i]} / ${total}`);
 	}
