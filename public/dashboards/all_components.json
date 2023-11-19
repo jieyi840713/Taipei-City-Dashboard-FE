@@ -173,51 +173,79 @@
 						"circle-radius": [
 							"interpolate",
 							["linear"],
-							["to-number", ["get", "容納人數"]],
+							["to-number", ["get", "PM2.5_AVG"]],
 							0,
 							2.5,
-							50,
-							1,
-							50000,
-							100
+							10,
+							10,
+							20,
+							20,
+							100,
+							1000
 						],
-						"circle-stroke-color": "#8bc34a",
-						"circle-stroke-width": 1.5
+						"circle-stroke-color": [
+							"interpolate",
+							["linear"],
+							["to-number", ["get", "PM2.5_AVG"]],
+							0,
+							"green",
+							18,
+							"yellow",
+							23,
+							"red",
+							100,
+							"purple"
+						],
+						"circle-stroke-width": 3
 					},
 					"property": [
 						{
-							"key": "名稱",
-							"name": "名稱"
+							"key": "PM2.5_AVG",
+							"name": "PM2.5"
 						},
 						{
-							"key": "鄉鎮",
-							"name": "行政區"
-						},
-						{
-							"key": "服務里別",
-							"name": "服務里別"
-						},
-						{
-							"key": "容納人數",
-							"name": "容納人數"
+							"key": "AQI",
+							"name": "AQI"
 						}
 					],
 					"type": "circle",
-					"title": "緊急避難設施"
+					"title": "空氣品質指標(AQI)"
+				},
+
+				{
+					"index": "patrol_designate_place",
+					"property": [
+						{
+							"key": "測站名稱",
+							"name": "名稱"
+						},
+						{
+							"key": "測站地址",
+							"name": "地址"
+						}
+					],
+					"type": "symbol",
+					"icon": "triangle_white",
+					"title": "測站"
 				}
 			],
 			"chart_config": {
-				"types": ["MapLegend"]
+				"color": ["#d59f0b", "#ff8c1a"],
+				"types": ["GuageSemi"],
+				"unit": "個",
+				"categories": ["運行中公車", "運行中路線"]
 			},
 			"chart_data": [
 				{
-					"type": "circle",
-					"color": "#8bc34a",
-					"name": "避難場所",
-					"value": 298
+					"name": "營運中",
+					"data": [1564, 273]
+				},
+				{
+					"name": "未營運",
+					"data": [164, 109]
 				}
 			],
-			"name": "緊急避難設施",
+			"name": "空氣品質指標(AQI)",
 			"source": "消防局",
 			"time_from": null,
 			"time_to": null,
@@ -648,7 +676,7 @@
 			],
 			"chart_config": {
 				"color": ["#d59f0b", "#ff8c1a"],
-				"types": ["GuageChart"],
+				"types": ["GuageSemi"],
 				"unit": "個",
 				"categories": ["運行中公車", "運行中路線"]
 			},
@@ -2758,8 +2786,9 @@
 			"index": "bike_lanes",
 			"map_config": [
 				{
-					"index": "bike_path",
+					"index": "patrol_designate_place_path",
 					"paint": {
+						"line-width": 3,
 						"line-color": [
 							"match",
 							["get", "type"],
@@ -2781,27 +2810,32 @@
 						}
 					],
 					"type": "line",
-					"title": "自行車道"
+					"title": "通勤路線"
+				},
+				{
+					"index": "patrol_designate_place_location",
+					"property": [
+						{
+							"key": "測站名稱",
+							"name": "名稱"
+						},
+						{
+							"key": "測站地址",
+							"name": "地址"
+						}
+					],
+					"type": "symbol",
+					"icon": "bus",
+					"title": "警察局"
 				}
 			],
 			"chart_config": {
 				"types": ["MapLegend"],
 				"map_filter": ["type", ["市區", "河濱"]]
 			},
-			"chart_data": [
-				{
-					"type": "line",
-					"color": "#a0b8e8",
-					"name": "市區自行車道"
-				},
-				{
-					"type": "line",
-					"color": "#b7ff98",
-					"name": "河濱自行車道"
-				}
-			],
-			"name": "自行車道",
-			"source": "交通局交工處",
+			"chart_data": [],
+			"name": "通勤路線",
+			"source": "",
 			"time_from": null,
 			"time_to": null,
 			"update_freq": null,
