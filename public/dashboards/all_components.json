@@ -173,51 +173,79 @@
 						"circle-radius": [
 							"interpolate",
 							["linear"],
-							["to-number", ["get", "容納人數"]],
+							["to-number", ["get", "PM2.5_AVG"]],
 							0,
 							2.5,
-							50,
-							1,
-							50000,
-							100
+							10,
+							10,
+							20,
+							20,
+							100,
+							1000
 						],
-						"circle-stroke-color": "#8bc34a",
-						"circle-stroke-width": 1.5
+						"circle-stroke-color": [
+							"interpolate",
+							["linear"],
+							["to-number", ["get", "PM2.5_AVG"]],
+							0,
+							"green",
+							18,
+							"yellow",
+							23,
+							"red",
+							100,
+							"purple"
+						],
+						"circle-stroke-width": 3
 					},
 					"property": [
 						{
-							"key": "名稱",
-							"name": "名稱"
+							"key": "PM2.5_AVG",
+							"name": "PM2.5"
 						},
 						{
-							"key": "鄉鎮",
-							"name": "行政區"
-						},
-						{
-							"key": "服務里別",
-							"name": "服務里別"
-						},
-						{
-							"key": "容納人數",
-							"name": "容納人數"
+							"key": "AQI",
+							"name": "AQI"
 						}
 					],
 					"type": "circle",
-					"title": "緊急避難設施"
+					"title": "空氣品質指標(AQI)"
+				},
+
+				{
+					"index": "patrol_designate_place",
+					"property": [
+						{
+							"key": "測站名稱",
+							"name": "名稱"
+						},
+						{
+							"key": "測站地址",
+							"name": "地址"
+						}
+					],
+					"type": "symbol",
+					"icon": "triangle_white",
+					"title": "測站"
 				}
 			],
 			"chart_config": {
-				"types": ["MapLegend"]
+				"color": ["#d59f0b", "#ff8c1a"],
+				"types": ["GuageSemi"],
+				"unit": "個",
+				"categories": ["運行中公車", "運行中路線"]
 			},
 			"chart_data": [
 				{
-					"type": "circle",
-					"color": "#8bc34a",
-					"name": "避難場所",
-					"value": 298
+					"name": "營運中",
+					"data": [1564, 273]
+				},
+				{
+					"name": "未營運",
+					"data": [164, 109]
 				}
 			],
-			"name": "緊急避難設施",
+			"name": "空氣品質指標(AQI)",
 			"source": "消防局",
 			"time_from": null,
 			"time_to": null,
@@ -648,7 +676,7 @@
 			],
 			"chart_config": {
 				"color": ["#d59f0b", "#ff8c1a"],
-				"types": ["GuageChart"],
+				"types": ["GuageSemi"],
 				"unit": "個",
 				"categories": ["運行中公車", "運行中路線"]
 			},
@@ -2758,8 +2786,9 @@
 			"index": "bike_lanes",
 			"map_config": [
 				{
-					"index": "bike_path",
+					"index": "patrol_designate_place_path",
 					"paint": {
+						"line-width": 3,
 						"line-color": [
 							"match",
 							["get", "type"],
@@ -2781,27 +2810,32 @@
 						}
 					],
 					"type": "line",
-					"title": "自行車道"
+					"title": "通勤路線"
+				},
+				{
+					"index": "patrol_designate_place_location",
+					"property": [
+						{
+							"key": "測站名稱",
+							"name": "名稱"
+						},
+						{
+							"key": "測站地址",
+							"name": "地址"
+						}
+					],
+					"type": "symbol",
+					"icon": "bus",
+					"title": "警察局"
 				}
 			],
 			"chart_config": {
 				"types": ["MapLegend"],
 				"map_filter": ["type", ["市區", "河濱"]]
 			},
-			"chart_data": [
-				{
-					"type": "line",
-					"color": "#a0b8e8",
-					"name": "市區自行車道"
-				},
-				{
-					"type": "line",
-					"color": "#b7ff98",
-					"name": "河濱自行車道"
-				}
-			],
-			"name": "自行車道",
-			"source": "交通局交工處",
+			"chart_data": [],
+			"name": "通勤路線",
+			"source": "",
 			"time_from": null,
 			"time_to": null,
 			"update_freq": null,
@@ -4133,15 +4167,148 @@
 			"use_case": "圖表所顯示的公園類別的面積與分佈位置，能夠幫助我們更深入了解不同公園類型的分佈情況。",
 			"links": [
 				"https://data.taipei/dataset/detail?id=4717811f-c20f-4deb-8013-981f1844d6fe"
-		"1001": {
+			],
+			"tags": [],
+			"contributors": ["tuic"]
+		},"1000": {
+			"id": 1000,
+			"index": "air_quality",
+			"map_config": [
+			 {
+			  "index": "patrol_designate_place",
+			  "paint": {
+			   "circle-opacity": 0,
+			   "circle-radius": [
+				"interpolate",
+				["linear"],
+				["to-number", ["get", "PM2.5_AVG"]],
+				0,
+				2.5,
+				10,
+				10,
+				20,
+				20,
+				100,
+				1000
+			   ],
+			   "circle-stroke-color": [
+				"interpolate",
+				["linear"],
+				["to-number", ["get", "PM2.5_AVG"]],
+				0,
+				"green",
+				18,
+				"yellow",
+				23,
+				"red",
+				100,
+				"purple"
+			   ],
+			   "circle-stroke-width": 3
+			  },
+			  "property": [
+			   {
+				"key": "PM2.5_AVG",
+				"name": "PM2.5"
+			   },
+			   {
+				"key": "AQI",
+				"name": "AQI"
+			   }
+			  ],
+			  "type": "circle",
+			  "title": "空氣品質指標(AQI)"
+			 },
+		 
+			 {
+			  "index": "patrol_designate_place",
+			  "property": [
+			   {
+				"key": "測站名稱",
+				"name": "名稱"
+			   },
+			   {
+				"key": "測站地址",
+				"name": "地址"
+			   }
+			  ],
+			  "type": "symbol",
+			  "icon": "triangle_white",
+			  "title": "測站"
+			 }
+			],
+			"chart_config": {
+			 "types": ["BubbleChart"],
+			 "color": ["#b9734a"],
+			 "unit": "個",
+			 "categories": [
+			  "汽車車位使用量",
+			  "機車車位使用量",
+			  "充電站使用量"
+			 ]
+			},
+			"name": "空氣品質監測站",
+			"source": "資訊局",
+			"time_from": "2023-07-28T00:00:00+08:00",
+			"time_to": null,
+			"short_desc": "",
+			"long_desc": "展示YouBike未設站區域的潛在需求，詳細預測方法可參考開源成果Github。資料來源為臺北大數據中心研究，更新頻率不定期。",
+			"use_case": "本組件可讓您掌握目前未設站地區，以及該地區可能有多少需求。這有助於規劃YouBike的擴展，並規劃適當的資源以滿足日益增長的需求。",
+			"tags": [],
+			"links": [
+			 "https://tuic.gov.taipei/youbike",
+			 "https://github.com/tpe-doit/YouBike-Optimization"
+			],
+			"contributors": ["tuic"]
+		   },
+		   "997": {
+			"id": 997,
+			"index": "ecar_recharge",
+			"map_config": [
+			 {
+			  "index": "ecar_recharge",
+			  "property": [
+			   {
+				"key": "名稱",
+				"name": "充電站名稱"
+			   },
+			   {
+				"key": "廠商",
+				"name": "廠商"
+			   },
+			   {
+				"key": "充電柱數量",
+				"name": "充電柱數量"
+			   }
+			  ],
+			  "type": "symbol",
+			  "icon": "triangle_white",
+			  "title": "電動車充電站"
+			 }
+			],
+			"name": "臺北市營利電動車充電站",
+			"chart_config": {
+			 "types": ["MapLegend"]
+			},
+			"chart_data": [
+			 {
+			  "type": "symbol",
+			  "icon": "triangle_white",
+			  "name": "電動車充電站"
+			 }
+			],
+			"source": "臺北市",
+			"contributors": ["tuic"]
+		   },
+		   "1001": {
 			"id": 1001,
 			"index": "aqi_indicator",
 			"history_data": false,
 			"map_config": null,
 			"chart_config": {
-				"color": ["#FD5696"],
-				"types": ["TimelineMultiSeriesChart"],
-				"unit": "公升"
+			 "color": ["#FD5696"],
+			 "types": ["TimelineMultiSeriesChart"],
+			 "unit": "公升"
 			},
 			"name": "空氣汙染時序圖",
 			"source": "環境部",
@@ -4153,20 +4320,20 @@
 			"long_desc": "顯示近一週的刑案統計資訊，資料來源為環境部開放資料，每日更新。",
 			"use_case": "藉由掌握台北市刑每日空污AQI數據，了解市民是否長期暴露在不安全的空氣環境中",
 			"links": [
-				"https://data.taipei/dataset/detail?id=dc7e246a-a88e-42f8-8cd6-9739209af774"
+			 "https://data.taipei/dataset/detail?id=dc7e246a-a88e-42f8-8cd6-9739209af774"
 			],
 			"tags": [],
 			"contributors": ["tuic"]
-		},
-		"1002": {
+		   },
+		   "1002": {
 			"id": 1002,
 			"index": "use_water",
 			"history_data": false,
 			"map_config": null,
 			"chart_config": {
-				"color": ["#5a9cf8"],
-				"types": ["FunnelChart"],
-				"unit": "AQI"
+			 "color": ["#5a9cf8"],
+			 "types": ["FunnelChart"],
+			 "unit": "AQI"
 			},
 			"name": "每人每日家庭用水",
 			"source": "自來水事業處",
@@ -4178,33 +4345,33 @@
 			"long_desc": "顯示近一年的每人每日家庭(生活)用水量",
 			"use_case": "藉由掌握台北市每人每日用水量，了解是否宣導節約用水有達到功效",
 			"links": [
-				"https://data.taipei/api/v1/dataset/b750f54f-2805-468a-bd90-e09804445f6b?scope=resourceAquire"
+			 "https://data.taipei/api/v1/dataset/b750f54f-2805-468a-bd90-e09804445f6b?scope=resourceAquire"
 			],
 			"tags": [],
 			"contributors": ["tuic"]
-		},
-		"1003": {
+		   },
+		   "1003": {
 			"id": 1003,
 			"index": "green_resources",
 			"map_config": null,
 			"history_data": true,
 			"chart_config": {
-				"types": ["TimelineSeparateChart", "TimelineStackedChart"],
-				"color": [
-					"#4dd97a",
-					"#0a85f4",
-					"#0a85f4",
-					"#f4f40a",
-					"#f4730a",
-					"#f40a92",
-					"#f40a48",
-					"#ba0af4",
-					"#0aa6f4",
-					"#0af4ba",
-					"#c5f40a",
-					"#f4640a"
-				],
-				"unit": "公頃"
+			 "types": ["TimelineSeparateChart", "TimelineStackedChart"],
+			 "color": [
+			  "#4dd97a",
+			  "#0a85f4",
+			  "#0a85f4",
+			  "#f4f40a",
+			  "#f4730a",
+			  "#f40a92",
+			  "#f40a48",
+			  "#ba0af4",
+			  "#0aa6f4",
+			  "#0af4ba",
+			  "#c5f40a",
+			  "#f4640a"
+			 ],
+			 "unit": "公頃"
 			},
 			"name": "人均綠地",
 			"source": "綠資源",
@@ -4216,34 +4383,34 @@
 			"long_desc": "顯示台北市民歷年每人可使用的綠地面積",
 			"use_case": "藉由這些圖表數據，我們可以追蹤使照與建照的變化趨勢，並進一步分析相關因素對於發照量的影響，以助於對都市發展和建設進行更明確的規劃與評估",
 			"links": [
-				"https://data.taipei/dataset/detail?id=0816f991-e6c8-4da0-a789-d022fee1462b",
-				"https://data.taipei/dataset/detail?id=d8834353-ff8e-4a6c-9730-a4d3541f2669"
+			 "https://data.taipei/dataset/detail?id=0816f991-e6c8-4da0-a789-d022fee1462b",
+			 "https://data.taipei/dataset/detail?id=d8834353-ff8e-4a6c-9730-a4d3541f2669"
 			],
 			"tags": [],
 			"contributors": ["tuic"]
-		},
-		"1004": {
+		   },
+		   "1004": {
 			"id": 1004,
 			"index": "green_resources",
 			"map_config": null,
 			"history_data": true,
 			"chart_config": {
-				"types": ["TimelineSeparateChart", "TimelineStackedChart"],
-				"color": [
-					"#4dd97a",
-					"#0a85f4",
-					"#0a85f4",
-					"#f4f40a",
-					"#f4730a",
-					"#f40a92",
-					"#f40a48",
-					"#ba0af4",
-					"#0aa6f4",
-					"#0af4ba",
-					"#c5f40a",
-					"#f4640a"
-				],
-				"unit": "公頃"
+			 "types": ["TimelineSeparateChart", "TimelineStackedChart"],
+			 "color": [
+			  "#4dd97a",
+			  "#0a85f4",
+			  "#0a85f4",
+			  "#f4f40a",
+			  "#f4730a",
+			  "#f40a92",
+			  "#f40a48",
+			  "#ba0af4",
+			  "#0aa6f4",
+			  "#0af4ba",
+			  "#c5f40a",
+			  "#f4640a"
+			 ],
+			 "unit": "公頃"
 			},
 			"name": "綠地總公頃",
 			"source": "綠資源",
@@ -4255,11 +4422,128 @@
 			"long_desc": "顯示台北市民歷年每人可使用的綠地面積",
 			"use_case": "藉由這些圖表數據，我們可以追蹤使照與建照的變化趨勢，並進一步分析相關因素對於發照量的影響，以助於對都市發展和建設進行更明確的規劃與評估",
 			"links": [
-				"https://data.taipei/dataset/detail?id=0816f991-e6c8-4da0-a789-d022fee1462b",
-				"https://data.taipei/dataset/detail?id=d8834353-ff8e-4a6c-9730-a4d3541f2669"
+			 "https://data.taipei/dataset/detail?id=0816f991-e6c8-4da0-a789-d022fee1462b",
+			 "https://data.taipei/dataset/detail?id=d8834353-ff8e-4a6c-9730-a4d3541f2669"
 			],
 			"tags": [],
 			"contributors": ["tuic"]
-		}
+		   },
+		   "1005": {
+			"id": 1005,
+			"index": "recycle_spot",
+			"map_config": [
+			 {
+			  "index": "recycle_spot",
+			  "property": [
+			   {
+				"key": "行政區",
+				"name": "行政區"
+			   },
+			   {
+				"key": "分隊",
+				"name": "分隊"
+			   },
+			   {
+				"key": "地址",
+				"name": "地址"
+			   },
+			   {
+				"key": "電話",
+				"name": "電話"
+			   },
+			   {
+				"key": "備註",
+				"name": "備註"
+			   }
+			  ],
+			  "type": "symbol",
+			  "icon": "bus",
+			  "title": "臺北市垃圾資源回收、廚餘回收限時收受點"
+			 }
+			],
+			"name": "臺北市垃圾資源回收收受點",
+			"chart_config": {
+			 "types": ["MapLegend"]
+			},
+			"chart_data": [
+			 {
+			  "type": "symbol",
+			  "icon": "bus",
+			  "name": "垃圾資源回收"
+			 }
+			],
+			"source": "臺北市"
+		   },
+		   "1010": {
+			"id": 1010,
+			"index": "solar_power",
+			"map_config": [
+			 {
+			  "index": "solarpower",
+			  "paint": {},
+			  "property": [
+			   {
+				"key": "行政區",
+				"name": "行政區"
+			   },
+			   {
+				"key": "類別",
+				"name": "類別"
+			   },
+			   {
+				"key": "名稱",
+				"name": "名稱"
+			   },
+			   {
+				"key": "地址",
+				"name": "地址"
+			   },
+			   {
+				"key": "裝置容量(KW)",
+				"name": "裝置容量(KW)"
+			   }
+			  ],
+			  "type": "symbol",
+			  "icon": "sun",
+			  "title": "發電能力"
+			 }
+			],
+			"chart_config": {
+			 "color": ["#33C552"],
+			 "types": ["DistrictChart", "ColumnChart"],
+			 "unit": "KW",
+			 "map_filter": [
+			  "行政區",
+			  [
+			   "北投區",
+			   "士林區",
+			   "內湖區",
+			   "南港區",
+			   "松山區",
+			   "信義區",
+			   "中山區",
+			   "大同區",
+			   "中正區",
+			   "萬華區",
+			   "大安區",
+			   "文山區"
+			  ]
+			 ]
+			},
+			"name": "太陽光電",
+			"source": "",
+			"time_from": null,
+			"time_to": null,
+			"update_freq": null,
+			"update_freq_unit": null,
+			"short_desc": "test",
+			"long_desc": "test2",
+			"use_case": "test3",
+			"links": [
+			 "https://data.taipei/dataset/detail?id=26e04fb7-ea13-44d1-8a2e-8598cca6fd9c"
+			],
+			"tags": [],
+			"contributors": []
+		   }
 	}
 }

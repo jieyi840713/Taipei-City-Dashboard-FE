@@ -358,4 +358,25 @@ export const maplayerCommonLayout = {
 			60,
 		],
 	},
+	"symbol-sun": {
+		"icon-image": [
+			"case",
+			[">=", ["get", "裝置容量(KW)"], 400],
+			"sun_red",
+			[">=", ["get", "裝置容量(KW)"], 200],
+			"sun_yellow",
+			"sun_green",
+		],
+		"icon-size": [
+			"interpolate",
+			["linear"],
+			["zoom"],
+			11.99,
+			0.7,
+			14,
+			1.1,
+			22,
+			1.4,
+		],
+	}
 };
