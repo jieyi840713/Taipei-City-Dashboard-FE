@@ -11,80 +11,29 @@ const props = defineProps([
 const mapStore = useMapStore();
 
 const chartOptions = ref({
-        el: '#app',
-        components: {
-          apexchart: VueApexCharts,
-        },
-        data: {
-          
-          series: [{
-            name: 'Product1',
-            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-              min: 10,
-              max: 60
-            })
-          },
-          {
-            name: 'Product2',
-            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-              min: 10,
-              max: 60
-            })
-          },
-          {
-            name: 'Product3',
-            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-              min: 10,
-              max: 60
-            })
-          },
-          {
-            name: 'Product4',
-            data: generateData(new Date('11 Feb 2017 GMT').getTime(), 20, {
-              min: 10,
-              max: 60
-            })
-          }],
-          chartOptions: {
-            chart: {
-              height: 350,
-              type: 'bubble',
-            },
-            dataLabels: {
-              enabled: false
-            },
-            fill: {
-              type: 'gradient',
-            },
-            title: {
-              text: '3D Bubble Chart'
-            },
-            xaxis: {
-              tickAmount: 12,
-              type: 'datetime',
-              labels: {
-                  rotate: 0,
-              }
-            },
-            yaxis: {
-              max: 70
-            },
-            theme: {
-              palette: 'palette2'
-            }
-          },
-          
-          
-        },
-        
-      });
-
-const chartHeight = computed(() => {
-	return `${40 + props.series[0].data.length * 24}`;
+	chart: {
+		height: 350,
+		type: "scatter",
+		zoom: {
+			enabled: true,
+			type: "xy",
+		},
+	},
+	xaxis: {
+		tickAmount: 10,
+		labels: {
+			formatter: function (val) {
+				return parseFloat(val).toFixed(1);
+			},
+		},
+	},
+	yaxis: {
+		tickAmount: 7,
+	},
 });
 
 const selectedIndex = ref(null);
-
+console.log({ props });
 function handleDataSelection(e, chartContext, config) {
 	if (!props.chart_config.map_filter) {
 		return;
@@ -109,11 +58,12 @@ function handleDataSelection(e, chartContext, config) {
 	<div v-if="activeChart === 'BubbleChart'">
 		<apexchart
 			width="100%"
-			:height="chartHeight"
-			type="bubble"
+			:height="350"
+			type="scatter"
 			:options="chartOptions"
 			:series="series"
 			@dataPointSelection="handleDataSelection"
 		></apexchart>
 	</div>
 </template>
+
