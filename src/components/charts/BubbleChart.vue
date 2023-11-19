@@ -33,7 +33,7 @@ const chartOptions = ref({
 });
 
 const selectedIndex = ref(null);
-console.log({ props });
+
 function handleDataSelection(e, chartContext, config) {
 	if (!props.chart_config.map_filter) {
 		return;
@@ -55,7 +55,7 @@ function handleDataSelection(e, chartContext, config) {
 </script>
 
 <template>
-	<div v-if="activeChart === 'BubbleChart'">
+	<div v-if="activeChart === 'BubbleChart'" class="bubblechart">
 		<apexchart
 			width="100%"
 			:height="350"
@@ -67,3 +67,9 @@ function handleDataSelection(e, chartContext, config) {
 	</div>
 </template>
 
+
+<style scoped lang="scss">
+.bubblechart{
+	--color-normal-text:#000
+}
+</style>
