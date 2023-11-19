@@ -36,6 +36,11 @@ import MetroChart from "./components/charts/MetroChart.vue";
 import HeatmapChart from "./components/charts/HeatmapChart.vue";
 import BubbleChart from "./components/charts/BubbleChart.vue";
 
+
+import 'mapbox-gl/dist/mapbox-gl.css';
+import 'mapbox-gl-compare/dist/mapbox-gl-compare.css';
+
+
 const app = createApp(App);
 
 // Add Core Packages: Vue-Router, Pinia, Apexcharts

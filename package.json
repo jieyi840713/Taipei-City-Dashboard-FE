@@ -12,10 +12,12 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@mapbox/mapbox-gl-sync-move": "^0.3.1",
 		"@vueuse/core": "^10.1.2",
 		"apexcharts": "^3.40.0",
 		"axios": "^1.4.0",
 		"dayjs": "^1.11.7",
+		"events": "^3.3.0",
 		"happy-dom": "^6.0.4",
 		"mapbox-gl": "^2.14.1",
 		"pinia": "^2.0.35",
@@ -30,6 +32,7 @@
 		"@vitejs/plugin-vue": "^4.1.0",
 		"@vue/test-utils": "^2.4.0",
 		"eslint-plugin-vue": "^9.15.1",
+		"mapbox-gl-compare": "^0.4.1",
 		"sass": "^1.63.6",
 		"vite": "^4.3.2",
 		"vite-plugin-compression": "^0.5.1",
