@@ -35,7 +35,6 @@ function handleDataSelection(index) {
 
 <template>
 	<div class="maplegend">
-		<GuageSemi />
 		<div
 			class="reportissue"
 			:style="{ width: '100%' }"
@@ -50,7 +49,10 @@ function handleDataSelection(index) {
 			</h3>
 			<input class="reportissue-input" type="text" value="台北市政府" />
 		</div>
-		<div class="maplegend-legend">
+		<div
+			class="maplegend-legend"
+			v-if="props.map_config[0].index !== 'patrol_designate_place_path'"
+		>
 			<button
 				v-for="(item, index) in series"
 				:key="item.name"

@@ -18,6 +18,9 @@ const chartOptions = ref({
 			enabled: true,
 			type: "xy",
 		},
+		toolbar: {
+			show: false,
+		},
 	},
 	xaxis: {
 		tickAmount: 10,
@@ -67,9 +70,8 @@ function handleDataSelection(e, chartContext, config) {
 	</div>
 </template>
 
-
 <style scoped lang="scss">
-.bubblechart{
-	--color-normal-text:#000
+.bubblechart {
+	--color-normal-text: #000;
 }
 </style>
